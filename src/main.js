@@ -92,16 +92,6 @@ const createFilterSectionTemplate = () =>
       >Archive <span class="filter__archive-count">115</span></label>
   </section>`;
 
-const createBoardSectionTemplate = () => `<section class="board container"></section>`;
-const siteMainElement = document.querySelector(`.main`);
-const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
-const render = (container, template, place = `beforeend`) => {
-  container.insertAdjacentHTML(place, template);
-};
-render(siteHeaderElement, createSiteMenuTemplate());
-render(siteMainElement, createFilterSectionTemplate());
-render(siteMainElement, createBoardSectionTemplate());
-const siteBoardElement = siteMainElement.querySelector(`.board.container`);
 const createBoardFilter = () =>
   `<div class="board__filter-list">
     <a href="#" class="board__filter" data-sort-type="default">SORT BY DEFAULT</a>
@@ -109,10 +99,7 @@ const createBoardFilter = () =>
     <a href="#" class="board__filter" data-sort-type="date-down">SORT BY DATE down</a>
   </div>`;
 
-render(siteBoardElement, createBoardFilter());
-
 const createBoardTask = () => `<div class="board__tasks"></div>`;
-render(siteBoardElement, createBoardTask());
 
 const createTaskEditTemplate = () =>
   `<article class="card card--edit card--yellow card--repeat">
@@ -312,8 +299,6 @@ const createTaskEditTemplate = () =>
       </div>
     </form>
   </article>`;
-const taskElement = siteBoardElement.querySelector(`.board__tasks`);
-render(taskElement, createTaskEditTemplate());
 
 const createCardTemplate = () =>
   `<article class="card card--black">
@@ -360,9 +345,25 @@ const createCardTemplate = () =>
     </div>
   </article>`;
 
+const createBoardSectionTemplate = () => `<section class="board container"></section>`;
+const createLoadMoreButtonTemplate = () => `<button class="load-more" type="button">load more</button>`;
+
+const render = (container, template, place = `beforeend`) => container.insertAdjacentHTML(place, template);
+
+const siteMainElement = document.querySelector(`.main`);
+const siteHeaderElement = siteMainElement.querySelector(`.main__control`);
+render(siteHeaderElement, createSiteMenuTemplate());
+render(siteMainElement, createFilterSectionTemplate());
+render(siteMainElement, createBoardSectionTemplate());
+
+const siteBoardElement = siteMainElement.querySelector(`.board.container`);
+render(siteBoardElement, createBoardFilter());
+render(siteBoardElement, createBoardTask());
+render(siteBoardElement, createLoadMoreButtonTemplate());
+
+const taskElement = siteBoardElement.querySelector(`.board__tasks`);
+render(taskElement, createTaskEditTemplate());
+
 for (let i = 0; i < TASK_COUNT; i++) {
   render(taskElement, createCardTemplate());
 }
-
-const createLoadMoreButtonTemplate = () => `<button class="load-more" type="button">load more</button>`;
-render(siteBoardElement, createLoadMoreButtonTemplate());
