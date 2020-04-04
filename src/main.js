@@ -1,13 +1,11 @@
-'use strict';
-
 import {createSiteMenuTemplate} from "./components/site-menu.js";
 import {createFilterSectionTemplate} from "./components/filtering.js";
 import {createBoardSectionTemplate} from "./components/board-section.js";
 import {createBoardSort} from "./components/board-sort.js";
-import {createBoardTask} from "./components/board-task.js";import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
+import {createBoardTask} from "./components/board-task.js";
+import {createLoadMoreButtonTemplate} from "./components/load-more-button.js";
 import {createTaskEditTemplate} from "./components/task-editing.js";
 import {createTaskTemplate} from "./components/task-creating.js";
-
 
 const TASK_COUNT = 3;
 const render = (container, template, place = `beforeend`) => container.insertAdjacentHTML(place, template);
